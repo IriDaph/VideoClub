@@ -65,4 +65,8 @@ public class Customer {
         this.rewardPoints = rewardPoints;
     }
 
+    public void calculateRewardPoints(double amountSpent){
+        this.rewardPoints = this.rewardPoints + (int) amountSpent;
+    }
+
 }
