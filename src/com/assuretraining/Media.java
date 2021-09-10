@@ -1,18 +1,21 @@
 package com.assuretraining;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Media {
     protected String description;
     protected double costPerDay;
     protected String name;
     protected String uid;
-    protected String dateOfRelease;
+    protected Date dateOfRelease;
 
-    public Media(String description, double costPerDay, String name, String uid, String dateOfRelease) {
+    public Media(String description, double costPerDay, String name, String uid, String dateOfRelease) throws Exception {
         this.description = description;
         this.costPerDay = costPerDay;
         this.name = name;
         this.uid = uid;
-        this.dateOfRelease = dateOfRelease;
+        setDateOfRelease(dateOfRelease);
     }
 
     public String getDescription() {
@@ -47,11 +50,12 @@ public class Media {
         this.uid = uid;
     }
 
-    public String getDateOfRelease() {
+    public Date getDateOfRelease() {
         return dateOfRelease;
     }
 
-    public void setDateOfRelease(String dateOfRelease) {
-        this.dateOfRelease = dateOfRelease;
+    public void setDateOfRelease(String dateOfRelease) throws  Exception{
+        Date date=new SimpleDateFormat("dd/MM/yyyy").parse(dateOfRelease);
+        this.dateOfRelease = date;
     }
 }
