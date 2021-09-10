@@ -2,12 +2,12 @@ package com.assuretraining;
 
 public class Media {
     protected String description;
-    protected Float costPerDay;
+    protected double costPerDay;
     protected String name;
     protected String uid;
     protected String dateOfRelease;
 
-    public Media(String description, Float costPerDay, String name, String uid, String dateOfRelease) {
+    public Media(String description, double costPerDay, String name, String uid, String dateOfRelease) {
         this.description = description;
         this.costPerDay = costPerDay;
         this.name = name;
@@ -23,11 +23,11 @@ public class Media {
         this.description = description;
     }
 
-    public Float getCostPerDay() {
+    public double getCostPerDay() {
         return costPerDay;
     }
 
-    public void setCostPerDay(Float costPerDay) {
+    public void setCostPerDay(double costPerDay) {
         this.costPerDay = costPerDay;
     }
 
