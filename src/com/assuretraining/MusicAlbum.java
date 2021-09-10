@@ -11,7 +11,7 @@ public class MusicAlbum extends Media{
                       String dateOfRelease,
                       String artist,
                       Integer numberOfTracks,
-                      String genre) {
+                      String genre) throws Exception {
         super(description, costPerDay, name, uid, dateOfRelease);
         this.artist = artist;
         this.numberOfTracks = numberOfTracks;

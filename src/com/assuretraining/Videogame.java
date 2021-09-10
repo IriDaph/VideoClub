@@ -16,7 +16,7 @@ public class Videogame extends Media{
                      double rating,
                      List<String> platforms,
                      String developer,
-                     String typeOfGame) {
+                     String typeOfGame) throws Exception {
         super(description, costPerDay, name, uid, dateOfRelease);
         this.rating = rating;
         this.platforms = platforms;

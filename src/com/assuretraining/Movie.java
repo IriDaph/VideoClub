@@ -21,7 +21,7 @@ public class Movie  extends  Media{
                  List<String> actors,
                  String duration,
                  String genre,
-                 String countryOfOrigin) {
+                 String countryOfOrigin) throws Exception {
         super(description, costPerDay, name, uid, dateOfRelease);
         this.imdbRating = imdbRating;
         this.director = director;
