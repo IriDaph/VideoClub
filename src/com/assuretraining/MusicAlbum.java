@@ -4,10 +4,10 @@ public class MusicAlbum extends Media{
     private String artist;
     private Integer numberOfTracks;
     private String genre;
-    public MusicAlbum(String description,
+    public MusicAlbum(String uid,
                       double costPerDay,
                       String name,
-                      String uid,
+                      String description,
                       String dateOfRelease,
                       String artist,
                       Integer numberOfTracks,
