@@ -270,11 +270,21 @@ public class Menu {
         String id = getString();
         System.out.println("Enter rental's media uid: ");
         String mediaUid = getString();
-        //TODO search media by uid
+        Media media = searchMediaByUid(mediaUid);
+        while (media == null){
+            System.out.println("A media with that Uid doesn't exist, enter another Uid ");
+            mediaUid = getString();
+            media = searchMediaByUid(mediaUid);
+        }
 
         System.out.println("Enter rental's customers id: ");
         String customerId = getString();
-        //TODO search customer by id
+        Customer customer = searchCustomerById(customerId);
+        while (customer == null){
+            System.out.println("A customer with that id doesn't exist, enter another id: ");
+            customerId = getString();
+            customer = searchCustomerById(customerId);
+        }
 
         System.out.println("Enter rental's number of days: ");
         Integer numberOfDays = 0;
@@ -303,6 +313,25 @@ public class Menu {
         this.rentals.add(rental);
     }
 
+    private Customer searchCustomerById(String customerId) {
+        Customer askedCustomer = null;
+        for (Customer  customer: this.customers){
+            if(customerId.equals(customer.getId())){
+                askedCustomer = customer;
+            }
+        }
+        return askedCustomer;
+    }
+
+    private Media searchMediaByUid(String mediaUid) {
+        Media askedMedia = null;
+        for (Media  media: this.ownedMedia){
+            if(mediaUid.equals(media.getUid())){
+                askedMedia = media;
+            }
+        }
+        return askedMedia;
+    }
 
 
 }
