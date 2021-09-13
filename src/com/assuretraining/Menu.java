@@ -10,10 +10,12 @@ public class Menu {
     private Scanner reader;
     private List<Customer> customers;
     private List<Media> ownedMedia;
+    private List<Rental> rentals;
     public Menu(){
         this.reader  = new Scanner(System.in);
         this.customers = new ArrayList<Customer>();
         this.ownedMedia = new ArrayList<Media>();
+        this.rentals = new ArrayList<Rental>();
 
 
     }
@@ -261,6 +263,44 @@ public class Menu {
 
         MusicAlbum musicAlbum = new MusicAlbum(uid,cost,name,description,date0fRelease,artist,numberTracks,genre);
         this.ownedMedia.add(musicAlbum);
+    }
+
+    public void createRental(){
+        System.out.println("Enter rental's id: ");
+        String id = getString();
+        System.out.println("Enter rental's media uid: ");
+        String mediaUid = getString();
+        //TODO search media by uid
+
+        System.out.println("Enter rental's customers id: ");
+        String customerId = getString();
+        //TODO search customer by id
+
+        System.out.println("Enter rental's number of days: ");
+        Integer numberOfDays = 0;
+        while (this.reader.hasNext()){
+
+            if (this.reader.hasNextInt()) {
+                numberOfDays = this.reader.nextInt();
+                break;
+            } else {
+                System.out.println("Please enter a number");
+                this.reader.next();
+            }
+        }
+        this.reader.nextLine(); //This is a workaround since scanner nextInt doesn't read the newline character
+
+        System.out.println("Is the customer paying in advance y/n: ");
+        boolean isPaid;
+        String paying = getString();
+        if (paying.equals("y")){
+            isPaid = true;
+        }
+        else {
+            isPaid = false;
+        }
+         Rental rental = new Rental(id,media,customer,numberOfDays,isPaid);
+        this.rentals.add(rental);
     }
 
 
