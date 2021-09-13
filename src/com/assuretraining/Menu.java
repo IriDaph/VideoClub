@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Menu {
-    private Scanner reader;
-    private List<Customer> customers;
-    private List<Media> ownedMedia;
-    private List<Rental> rentals;
+    private final Scanner reader;
+    private final List<Customer> customers;
+    private final List<Media> ownedMedia;
+    private final List<Rental> rentals;
     public Menu(){
         this.reader  = new Scanner(System.in);
         this.customers = new ArrayList<Customer>();
@@ -27,37 +27,41 @@ public class Menu {
     public void startMenu() throws Exception {
        Boolean isMenuOn = true;
        while (isMenuOn) {
-           System.out.println("1. Add a rental");
-           System.out.println("2. Add a customer");
-           System.out.println("3. Add a movie ");
-           System.out.println("4. Add a music album");
-           System.out.println("5. Add a video game");
+           System.out.println("******************************************************");
+
+           System.out.println("1. Add a customer");
+           System.out.println("2. Add a movie ");
+           System.out.println("3. Add a music album");
+           System.out.println("4. Add a video game");
+           System.out.println("5. Add a rental");
            System.out.println("6. See all customers ");
            System.out.println("7. See all media");
            System.out.println("8. See all rentals");
            System.out.println("9. Calculate a penalty fee");
+           System.out.println("(10. Modify return date of rental:)");
            System.out.println("0. Exit");
+           System.out.println("******************************************************");
            System.out.println("Enter an option: ");
            String choice = getString();
            switch (choice) {
                case "0":
-                   System.out.printf("Goodbye");
+                   System.out.println("Goodbye");
                    isMenuOn = false;
                    break;
                case "1":
-                   createRental();
-                   break;
-               case "2":
                    createCustomer();
                    break;
-               case "3":
+               case "2":
                    createMovie();
                    break;
-               case "4":
+               case "3":
                    createMusicAlbum();
                    break;
-               case "5":
+               case "4":
                    createVideogame();
+                   break;
+               case "5":
+                   createRental();
                    break;
                case "6":
                    seeAllCustomer();
@@ -71,6 +75,9 @@ public class Menu {
                case "9":
                    calculatePenaltyFee();
                    break;
+               case  "10":
+                   modifyReturnOfRental();
+                   break;
                default:
                    System.out.println("Not a valid option");
                    break;
@@ -78,17 +85,52 @@ public class Menu {
        }
     }
 
+    private void modifyReturnOfRental() throws Exception {
+        System.out.println("Enter rental's  id: ");
+        String rentalId = getString();
+        Rental rental = searchRentalById(rentalId);
+        while (rental == null){
+            System.out.println("A rental with that id doesn't exist, enter another id: ");
+            rentalId = getString();
+            rental = searchRentalById(rentalId);
+        }
+        Pattern p = Pattern.compile("^(?:(?:31(/)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(/)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(/)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(/)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
+
+        System.out.println("Enternew date (dd/mm/yyyy): ");
+        String date = getString();
+        Matcher match = p.matcher(date);
+        boolean ans = match.matches();
+        while (!ans){
+            System.out.println("Please enter a VALID date in the format dd/mm/yyyy:");
+            date = this.reader.nextLine();
+            match = p.matcher(date);
+            ans = match.matches();
+        }
+
+        rental.setDateOfRental(date);
+        rental.calculateDayOfReturning();
+    }
+
     public void seeAllMedia(){
+        if (ownedMedia.isEmpty()){
+            System.out.println("There isn't any media yet");
+        }
         for (Media media: ownedMedia){
             media.printMedia();
         }
     }
     public void seeAllCustomer(){
+        if (customers.isEmpty()){
+            System.out.println("There aren't any customers  yet");
+        }
         for (Customer customer: customers){
-            customer.printCusotmer();
+            customer.printCustomer();
         }
     }
     public  void seeAllRentals(){
+        if (rentals.isEmpty()){
+            System.out.println("There aren't any rentals yet");
+        }
         for (Rental rental: rentals){
             rental.printRental();
         }
@@ -103,6 +145,8 @@ public class Menu {
             rentalId = getString();
             rental = searchRentalById(rentalId);
         }
+        rental.calculatePenalty();
+        System.out.println("Customer "+rental.getCustomer().getId()+" penalty fee is "+rental.getPenaltyFee());
 
     }
 
@@ -335,53 +379,53 @@ public class Menu {
     }
 
     public void createRental(){
-        System.out.println("Enter rental's id: ");
-        String id = getString();
-        System.out.println("Enter rental's media uid: ");
-        String mediaUid = getString();
-        Media media = searchMediaByUid(mediaUid);
-        while (media == null){
-            System.out.println("A media with that Uid doesn't exist, enter another Uid ");
-            mediaUid = getString();
-            media = searchMediaByUid(mediaUid);
-        }
-
-        System.out.println("Enter rental's customers id: ");
-        String customerId = getString();
-        Customer customer = searchCustomerById(customerId);
-        while (customer == null){
-            System.out.println("A customer with that id doesn't exist, enter another id: ");
-            customerId = getString();
-            customer = searchCustomerById(customerId);
-        }
-
-        System.out.println("Enter rental's number of days: ");
-        Integer numberOfDays = 0;
-        while (this.reader.hasNext()){
-
-            if (this.reader.hasNextInt()) {
-                numberOfDays = this.reader.nextInt();
-                break;
-            } else {
-                System.out.println("Please enter a number");
-                this.reader.next();
+        if( !customers.isEmpty() && !ownedMedia.isEmpty()) {
+            System.out.println("Enter rental's id: ");
+            String id = getString();
+            System.out.println("Enter rental's media uid: ");
+            String mediaUid = getString();
+            Media media = searchMediaByUid(mediaUid);
+            while (media == null) {
+                System.out.println("A media with that Uid doesn't exist, enter another Uid ");
+                mediaUid = getString();
+                media = searchMediaByUid(mediaUid);
             }
-        }
-        this.reader.nextLine(); //This is a workaround since scanner nextInt doesn't read the newline character
 
-        System.out.println("Is the customer paying in advance y/n: ");
-        boolean isPaid;
-        String paying = getString();
-        if (paying.equals("y")){
-            isPaid = true;
+            System.out.println("Enter rental's customers id: ");
+            String customerId = getString();
+            Customer customer = searchCustomerById(customerId);
+            while (customer == null) {
+                System.out.println("A customer with that id doesn't exist, enter another id: ");
+                customerId = getString();
+                customer = searchCustomerById(customerId);
+            }
+
+            System.out.println("Enter rental's number of days: ");
+            Integer numberOfDays = 0;
+            while (this.reader.hasNext()) {
+
+                if (this.reader.hasNextInt()) {
+                    numberOfDays = this.reader.nextInt();
+                    break;
+                } else {
+                    System.out.println("Please enter a number");
+                    this.reader.next();
+                }
+            }
+            this.reader.nextLine(); //This is a workaround since scanner nextInt doesn't read the newline character
+
+            System.out.println("Is the customer paying in advance y/n: ");
+            boolean isPaid;
+            String paying = getString();
+            isPaid = paying.equals("y");
+
+            Rental rental = new Rental(id, media, customer, numberOfDays, isPaid);
+            customer.calculateRewardPoints(numberOfDays * media.getCostPerDay());
+            this.rentals.add(rental);
         }
         else {
-            isPaid = false;
+            System.out.println("There aren't any media or customers added yet, you can't add a Rental without those.");
         }
-
-        Rental rental = new Rental(id,media,customer,numberOfDays,isPaid);
-        customer.calculateRewardPoints(numberOfDays*media.getCostPerDay());
-        this.rentals.add(rental);
     }
 
     private Customer searchCustomerById(String customerId) {

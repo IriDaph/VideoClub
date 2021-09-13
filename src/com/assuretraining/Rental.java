@@ -31,7 +31,7 @@ public class Rental {
         this.dateOfRental = new Date();
         calculateDayOfReturning();
     }
-    private void calculateDayOfReturning() {
+    public void calculateDayOfReturning() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(this.dateOfRental);
         cal.add(Calendar.DATE, this.quantityOfDays);
@@ -109,6 +109,8 @@ public class Rental {
 
     public void printRental() {
         System.out.println("Rental Id: "+id);
+        System.out.println("Customer id: "+customer.getId());
+        System.out.println("Customer name: "+customer.getName());
         System.out.println("Date of Rental: "+dateOfRental);
         System.out.println("Date of Returning: "+dateOfReturning);
         System.out.println("Paid?: "+isPaid);
