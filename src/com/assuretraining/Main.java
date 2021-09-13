@@ -1,11 +1,19 @@
 package com.assuretraining;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) throws Exception{
         Menu menu = new Menu();
-        menu.createCustomer();
+        Scanner reader  = new Scanner(System.in);
+        menu.createMovie();
+
+
+
+
+
     }
 }
