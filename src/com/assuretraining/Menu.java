@@ -24,17 +24,86 @@ public class Menu {
         return this.reader.nextLine();
     }
 
-    public void startMenu(){
-        String choice = getString();
-        switch (choice)
-        {
-            case "1":
-                System.out.println("Elegiste 1");
-            case "2":
-                System.out.println("Elegiste 2");
-            default:
-               System.out.println("Not a valid option");
+    public void startMenu() throws Exception {
+       Boolean isMenuOn = true;
+       while (isMenuOn) {
+           System.out.println("1. Add a rental");
+           System.out.println("2. Add a customer");
+           System.out.println("3. Add a movie ");
+           System.out.println("4. Add a music album");
+           System.out.println("5. Add a video game");
+           System.out.println("6. See all customers ");
+           System.out.println("7. See all media");
+           System.out.println("8. See all rentals");
+           System.out.println("9. Calculate a penalty fee");
+           System.out.println("0. Exit");
+           System.out.println("Enter an option: ");
+           String choice = getString();
+           switch (choice) {
+               case "0":
+                   System.out.printf("Goodbye");
+                   isMenuOn = false;
+                   break;
+               case "1":
+                   createRental();
+                   break;
+               case "2":
+                   createCustomer();
+                   break;
+               case "3":
+                   createMovie();
+                   break;
+               case "4":
+                   createMusicAlbum();
+                   break;
+               case "5":
+                   createVideogame();
+                   break;
+               case "6":
+                   seeAllCustomer();
+                   break;
+               case "7":
+                   seeAllMedia();
+                   break;
+               case "8" :
+                   seeAllRentals();
+                   break;
+               case "9":
+                   calculatePenaltyFee();
+                   break;
+               default:
+                   System.out.println("Not a valid option");
+                   break;
+           }
+       }
+    }
+
+    public void seeAllMedia(){
+        for (Media media: ownedMedia){
+            media.printMedia();
         }
+    }
+    public void seeAllCustomer(){
+        for (Customer customer: customers){
+            customer.printCusotmer();
+        }
+    }
+    public  void seeAllRentals(){
+        for (Rental rental: rentals){
+            rental.printRental();
+        }
+    }
+
+    public void calculatePenaltyFee(){
+        System.out.println("Enter rental's  id: ");
+        String rentalId = getString();
+        Rental rental = searchRentalById(rentalId);
+        while (rental == null){
+            System.out.println("A rental with that id doesn't exist, enter another id: ");
+            rentalId = getString();
+            rental = searchRentalById(rentalId);
+        }
+
     }
 
     public void createCustomer(){
@@ -189,7 +258,7 @@ public class Menu {
             System.out.println("Enter platform: ");
             String platform = getString();
             platforms.add(platform);
-            System.out.println("Do you want to add another actor/actress? y/n: ");
+            System.out.println("Do you want to add another platform? y/n: ");
             String userAnswer = getString();
             if (userAnswer.equals("n")){
                 answer = false;
@@ -309,7 +378,9 @@ public class Menu {
         else {
             isPaid = false;
         }
-         Rental rental = new Rental(id,media,customer,numberOfDays,isPaid);
+
+        Rental rental = new Rental(id,media,customer,numberOfDays,isPaid);
+        customer.calculateRewardPoints(numberOfDays*media.getCostPerDay());
         this.rentals.add(rental);
     }
 
@@ -333,5 +404,14 @@ public class Menu {
         return askedMedia;
     }
 
+    private Rental searchRentalById(String rentalId){
+        Rental askedRental = null;
+        for (Rental  rental: this.rentals){
+            if(rentalId.equals(rental.getId())){
+                askedRental = rental;
+            }
+        }
+        return askedRental;
+    }
 
 }

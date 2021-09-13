@@ -1,9 +1,6 @@
 package com.assuretraining;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -110,4 +107,12 @@ public class Rental {
         return difference;
     }
 
+    public void printRental() {
+        System.out.println("Rental Id: "+id);
+        System.out.println("Date of Rental: "+dateOfRental);
+        System.out.println("Date of Returning: "+dateOfReturning);
+        System.out.println("Paid?: "+isPaid);
+        System.out.println("total: "+total);
+        System.out.println("penaltyFee: "+penaltyFee);
+    }
 }
