@@ -1,4 +1,7 @@
-package com.assuretraining;
+package com.assuretraining.main.videoClubClasses.rental;
+
+import com.assuretraining.main.videoClubClasses.customer.Customer;
+import com.assuretraining.main.videoClubClasses.media.Media;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.assuretraining;
+package com.assuretraining.main.videoClubClasses.customer;
 
 public class Customer {
     private String id;

@@ -1,4 +1,11 @@
-package com.assuretraining;
+package com.assuretraining.main.userInterface;
+
+import com.assuretraining.main.videoClubClasses.customer.Customer;
+import com.assuretraining.main.videoClubClasses.media.Media;
+import com.assuretraining.main.videoClubClasses.media.Movie;
+import com.assuretraining.main.videoClubClasses.media.MusicAlbum;
+import com.assuretraining.main.videoClubClasses.media.Videogame;
+import com.assuretraining.main.videoClubClasses.rental.Rental;
 
 import java.util.ArrayList;
 import java.util.List;

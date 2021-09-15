@@ -1,8 +1,10 @@
-package com.assuretraining;
+package com.assuretraining.main.videoClubClasses.media;
+
+import com.assuretraining.main.videoClubClasses.media.Media;
 
 import java.util.List;
 
-public class Videogame extends Media{
+public class Videogame extends Media {
     private double rating;
     private List<String> platforms;
     private String developer;

@@ -1,8 +1,10 @@
-package com.assuretraining;
+package com.assuretraining.main.videoClubClasses.media;
+
+import com.assuretraining.main.videoClubClasses.media.Media;
 
 import java.util.List;
 
-public class Movie  extends  Media{
+public class Movie  extends Media {
     private double imdbRating;
     private String director;
     private List<String> actors;
