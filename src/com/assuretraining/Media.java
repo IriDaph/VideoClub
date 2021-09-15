@@ -58,4 +58,12 @@ public class Media {
         Date date=new SimpleDateFormat("dd/MM/yyyy").parse(dateOfRelease);
         this.dateOfRelease = date;
     }
+
+    public  void printMedia(){
+        System.out.println("Uid: "+uid);
+        System.out.println("Name: "+name);
+        System.out.println("Description: "+description);
+        System.out.println("Cost per day: "+costPerDay);
+
+    }
 }

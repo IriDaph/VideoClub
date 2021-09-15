@@ -69,4 +69,12 @@ public class Customer {
         this.rewardPoints = this.rewardPoints + (int) amountSpent;
     }
 
+    public  void printCustomer(){
+        System.out.println("Id: "+id);
+        System.out.println("Name: "+name);
+        System.out.println("Lastname: "+lastname);
+        System.out.println("Cellphone"+cellphone);
+        System.out.println("Rewards points: "+rewardPoints);
+    }
+
 }
