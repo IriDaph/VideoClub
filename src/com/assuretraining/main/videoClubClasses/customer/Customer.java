@@ -61,20 +61,16 @@ public class Customer {
         return rewardPoints;
     }
 
-    public void setRewardPoints(Integer rewardPoints) {
-        this.rewardPoints = rewardPoints;
-    }
-
-    public void calculateRewardPoints(double amountSpent){
+    public void calculateRewardPoints(double amountSpent) {
         this.rewardPoints = this.rewardPoints + (int) amountSpent;
     }
 
-    public  void printCustomer(){
-        System.out.println("Id: "+id);
-        System.out.println("Name: "+name);
-        System.out.println("Lastname: "+lastname);
-        System.out.println("Cellphone"+cellphone);
-        System.out.println("Rewards points: "+rewardPoints);
+    public  void printCustomer() {
+        System.out.println(customerStrings.ID+id);
+        System.out.println(customerStrings.NAME+name);
+        System.out.println(customerStrings.LASTNAME+lastname);
+        System.out.println(customerStrings.CELLPHONE+cellphone);
+        System.out.println(customerStrings.REWARD_POINTS+rewardPoints);
     }
 
 }
