@@ -66,11 +66,11 @@ public class Customer {
     }
 
     public  void printCustomer() {
-        System.out.println(customerStrings.ID+id);
-        System.out.println(customerStrings.NAME+name);
-        System.out.println(customerStrings.LASTNAME+lastname);
-        System.out.println(customerStrings.CELLPHONE+cellphone);
-        System.out.println(customerStrings.REWARD_POINTS+rewardPoints);
+        System.out.println(CustomerStrings.ID + id);
+        System.out.println(CustomerStrings.NAME + name);
+        System.out.println(CustomerStrings.LASTNAME + lastname);
+        System.out.println(CustomerStrings.CELLPHONE + cellphone);
+        System.out.println(CustomerStrings.REWARD_POINTS + rewardPoints);
     }
 
 }

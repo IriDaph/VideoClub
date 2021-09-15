@@ -54,7 +54,7 @@ public class Rental {
     }
 
     public void setDateOfRental(String dateOfRental) throws Exception {
-        Date date=new SimpleDateFormat("dd/MM/yyyy").parse(dateOfRental);
+        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfRental);
         this.dateOfRental = date;
     }
 
@@ -63,7 +63,7 @@ public class Rental {
     }
 
     public void setDateOfReturning(String dateOfReturning) throws Exception  {
-        Date date=new SimpleDateFormat("dd/MM/yyyy").parse(dateOfReturning);
+        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfReturning);
         this.dateOfReturning = date;
     }
 
@@ -97,7 +97,7 @@ public class Rental {
 
     public void calculatePenalty() {
         Date today = new Date();
-        if(today.after(this.dateOfReturning)){
+        if (today.after(this.dateOfReturning)) {
             long difference = getDifferenceOfDays(today);
             this.penaltyFee = (this.total*0.75)*difference;
         }
@@ -106,18 +106,18 @@ public class Rental {
     private long getDifferenceOfDays(Date today) {
         long diff = today.getTime() - this.dateOfReturning.getTime();
         TimeUnit time = TimeUnit.DAYS;
-        long difference =  TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        long difference =  time.convert(diff, TimeUnit.MILLISECONDS);
         return difference;
     }
 
     public void printRental() {
-        System.out.println("Rental Id: "+id);
-        System.out.println("Customer id: "+customer.getId());
-        System.out.println("Customer name: "+customer.getName());
-        System.out.println("Date of Rental: "+dateOfRental);
-        System.out.println("Date of Returning: "+dateOfReturning);
-        System.out.println("Paid?: "+isPaid);
-        System.out.println("total: "+total);
-        System.out.println("penaltyFee: "+penaltyFee);
+        System.out.println(RentalStrings.RENTAL_ID + id);
+        System.out.println(RentalStrings.CUSTOMERS_ID + customer.getId());
+        System.out.println(RentalStrings.CUSTOMERS_NAME + customer.getName());
+        System.out.println(RentalStrings.DATE_OF_RENTAL + dateOfRental);
+        System.out.println(RentalStrings.DATE_OF_RETURNING + dateOfReturning);
+        System.out.println(RentalStrings.CUSTOMER_PAID+ isPaid);
+        System.out.println(RentalStrings.TOTAL + total);
+        System.out.println(RentalStrings.PENALTY_FEE + penaltyFee);
     }
 }
