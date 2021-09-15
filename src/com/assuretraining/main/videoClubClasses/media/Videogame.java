@@ -10,9 +10,8 @@ public class Videogame extends Media {
     private String developer;
     private String typeOfGame;
 
-    public Videogame(
-                    String uid,
-                    String description,
+    public Videogame(String uid,
+                     String description,
                      double costPerDay,
                      String name,
                      String dateOfRelease,

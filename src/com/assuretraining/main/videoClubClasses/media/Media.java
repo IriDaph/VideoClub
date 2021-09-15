@@ -10,7 +10,11 @@ public class Media {
     protected String uid;
     protected Date dateOfRelease;
 
-    public Media(String description, double costPerDay, String name, String uid, String dateOfRelease) throws Exception {
+    public Media(String description,
+                 double costPerDay,
+                 String name, 
+                 String uid,
+                 String dateOfRelease) throws Exception {
         this.description = description;
         this.costPerDay = costPerDay;
         this.name = name;
@@ -55,15 +59,15 @@ public class Media {
     }
 
     public void setDateOfRelease(String dateOfRelease) throws  Exception{
-        Date date=new SimpleDateFormat("dd/MM/yyyy").parse(dateOfRelease);
+        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfRelease);
         this.dateOfRelease = date;
     }
 
     public  void printMedia(){
-        System.out.println("Uid: "+uid);
-        System.out.println("Name: "+name);
-        System.out.println("Description: "+description);
-        System.out.println("Cost per day: "+costPerDay);
+        System.out.println(MediaStrings.UID + uid);
+        System.out.println(MediaStrings.MEDIA_NAME + name);
+        System.out.println(MediaStrings.DESCRIPTION + description);
+        System.out.println(MediaStrings.COST_PER_DAY + costPerDay);
 
     }
 }
