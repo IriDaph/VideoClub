@@ -12,7 +12,7 @@ public class Media {
 
     public Media(String description,
                  double costPerDay,
-                 String name, 
+                 String name,
                  String uid,
                  String dateOfRelease) throws Exception {
         this.description = description;

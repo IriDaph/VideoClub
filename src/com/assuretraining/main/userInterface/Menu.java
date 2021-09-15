@@ -20,9 +20,9 @@ public class Menu {
     private final List<Rental> rentals;
     public Menu(){
         this.reader  = new Scanner(System.in);
-        this.customers = new ArrayList<Customer>();
-        this.ownedMedia = new ArrayList<Media>();
-        this.rentals = new ArrayList<Rental>();
+        this.customers = new ArrayList<>();
+        this.ownedMedia = new ArrayList<>();
+        this.rentals = new ArrayList<>();
 
 
     }
@@ -35,7 +35,6 @@ public class Menu {
        Boolean isMenuOn = true;
        while (isMenuOn) {
            System.out.println("******************************************************");
-
            System.out.println("1. Add a customer");
            System.out.println("2. Add a movie ");
            System.out.println("3. Add a music album");
@@ -103,7 +102,7 @@ public class Menu {
         }
         Pattern p = Pattern.compile("^(?:(?:31(/)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(/)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(/)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(/)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$");
 
-        System.out.println("Enternew date (dd/mm/yyyy): ");
+        System.out.println("Enter new date (dd/mm/yyyy): ");
         String date = getString();
         Matcher match = p.matcher(date);
         boolean ans = match.matches();
@@ -249,7 +248,6 @@ public class Menu {
         String countryOfOrigin = getString();
 
         Movie movie = new Movie(description,cost,name,uid,date0fRelease,imdb,director,cast,duration,genre,countryOfOrigin);
-        System.out.println(movie.getDirector());
         this.ownedMedia.add(movie);
     }
 
