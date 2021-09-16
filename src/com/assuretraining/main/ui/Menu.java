@@ -4,6 +4,7 @@ import com.assuretraining.main.club.customer.Customer;
 import com.assuretraining.main.club.media.*;
 import com.assuretraining.main.club.rental.Rental;
 import com.assuretraining.main.inventory.CustomerInventory;
+import com.assuretraining.main.inventory.Inventory;
 import com.assuretraining.main.inventory.MediaInventory;
 import com.assuretraining.main.inventory.RentalInventory;
 import com.assuretraining.main.ui.command.*;
@@ -13,9 +14,9 @@ import java.util.HashMap;
 
 public class Menu {
     public final ScannerActions reader;
-    public CustomerInventory customers;
-    public MediaInventory ownedMedia;
-    public RentalInventory rentals;
+    public Inventory customers;
+    public Inventory ownedMedia;
+    public Inventory rentals;
     public Boolean isMenuOn;
 
     public Menu(){
@@ -51,9 +52,7 @@ public class Menu {
         commands.put(MenuStrings.SEE_RENTALS, new SeeRentalsCommand());
         commands.put(MenuStrings.CALCULATE_PENALTY_FEE, new CalculatePenaltyCommand());
         commands.put(MenuStrings.MODIFY_RETURN_DATE, new ModifyDateCommand());
-
-        command = commands.get(choice);
-        return command;
+        return commands.get(choice);
     }
 
     private void printOptions() {
@@ -75,14 +74,9 @@ public class Menu {
 
     public Customer searchCustomerById(String customerId) {
         Customer askedCustomer = (Customer) customers.searchByIdentifier(customerId);
-        while (askedCustomer == null) {
-            System.out.println("A customer with that id doesn't exist, enter another id: ");
-            customerId = reader.getString();
-            askedCustomer = (Customer) customers.searchByIdentifier(customerId);
-        }
+
         return askedCustomer;
     }
-
     public Media searchMediaByUid(String mediaUid) {
         Media askedMedia = (Media) ownedMedia.searchByIdentifier(mediaUid);
         while (askedMedia == null) {
@@ -102,5 +96,4 @@ public class Menu {
         }
         return askedRental;
     }
-
 }

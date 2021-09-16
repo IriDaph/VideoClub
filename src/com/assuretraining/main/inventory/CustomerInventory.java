@@ -28,10 +28,11 @@ public class CustomerInventory implements Inventory {
     public Object searchByIdentifier(String id) {
         Customer askedCustomer = null;
         for (Customer  customer: this.customerInventory){
-            if(id.equals(customer.getId())){
+            if(id.equals(customer.getId())) {
                 askedCustomer = customer;
             }
         }
+
         return askedCustomer;
     }
 

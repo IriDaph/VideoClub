@@ -58,6 +58,9 @@ public class ScannerActions {
         }
         return date;
     }
+    public String getNextLine(){
+        return this.scanner.nextLine();
+    }
 
     public List<String> getStringList(String typeOfList){
         List<String> stringList = new ArrayList<>();

@@ -14,10 +14,6 @@ public class MenuStrings {
     public static final String CALCULATE_PENALTY_FEE = "9";
     public static final String MODIFY_RETURN_DATE = "10";
 
-
-
-
-
     public static final String DECORATION = "******************************************************";
     public static final String ADD_CUSTOMER_DESCRIPTION = "1. Add a customer";
     public static final String ADD_MOVIE_DESCRIPTION = "2. Add a movie";
