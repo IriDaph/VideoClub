@@ -1,7 +1,6 @@
 package com.assuretraining.main.inventory;
 
-import com.assuretraining.main.videoClubClasses.customer.Customer;
-import com.assuretraining.main.videoClubClasses.media.Media;
+import com.assuretraining.main.club.customer.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,5 +22,21 @@ public class CustomerInventory implements Inventory {
         for(Customer customer:customerInventory){
             customer.printCustomer();
         }
+    }
+
+    @Override
+    public Object searchByIdentifier(String id) {
+        Customer askedCustomer = null;
+        for (Customer  customer: this.customerInventory){
+            if(id.equals(customer.getId())){
+                askedCustomer = customer;
+            }
+        }
+        return askedCustomer;
+    }
+
+    @Override
+    public boolean isInventoryEmpty() {
+        return customerInventory.isEmpty();
     }
 }

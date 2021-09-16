@@ -1,4 +1,4 @@
-package com.assuretraining.main.videoClubClasses.media;
+package com.assuretraining.main.club.media;
 
 public class MediaStrings {
     public static final String UID = "Uid: ";

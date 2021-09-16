@@ -1,4 +1,4 @@
-package com.assuretraining.main.videoClubClasses.customer;
+package com.assuretraining.main.club.customer;
 
 public class CustomerStrings {
     public static final String ID= "Id: ";

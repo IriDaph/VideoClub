@@ -1,6 +1,4 @@
-package com.assuretraining.main.videoClubClasses.media;
-
-import com.assuretraining.main.videoClubClasses.media.Media;
+package com.assuretraining.main.club.media;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.assuretraining.main.inventory;
 
-import com.assuretraining.main.videoClubClasses.media.Media;
+import com.assuretraining.main.club.media.Media;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,22 @@ public class MediaInventory implements Inventory {
         for(Media media:mediaInventoryList){
             media.printMedia();
         }
+    }
+
+    @Override
+    public Object searchByIdentifier(String id) {
+        Media askedMedia = null;
+        for (Media  media: this.mediaInventoryList){
+            if(id.equals(media.getUid())){
+                askedMedia = media;
+            }
+        }
+        return askedMedia;
+    }
+
+    @Override
+    public boolean isInventoryEmpty() {
+        return mediaInventoryList.isEmpty();
     }
 
 }

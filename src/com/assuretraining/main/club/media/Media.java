@@ -1,4 +1,4 @@
-package com.assuretraining.main.videoClubClasses.media;
+package com.assuretraining.main.club.media;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,6 +1,4 @@
-package com.assuretraining.main.videoClubClasses.media;
-
-import com.assuretraining.main.videoClubClasses.media.Media;
+package com.assuretraining.main.club.media;
 
 public class MusicAlbum extends Media {
     private String artist;

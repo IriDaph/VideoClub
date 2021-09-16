@@ -1,4 +1,4 @@
-package com.assuretraining.main.videoClubClasses.rental;
+package com.assuretraining.main.club.rental;
 
 public class RentalStrings {
     public static final String RENTAL_ID = "Rental Id: ";

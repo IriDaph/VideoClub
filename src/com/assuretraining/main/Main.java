@@ -1,6 +1,6 @@
 package com.assuretraining.main;
 
-import com.assuretraining.main.userInterface.Menu;
+import com.assuretraining.main.ui.Menu;
 
 public class Main {
     public static void main(String[] args) throws Exception{
