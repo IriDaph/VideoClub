@@ -6,19 +6,23 @@ import com.assuretraining.main.club.rental.Rental;
 import com.assuretraining.main.inventory.CustomerInventory;
 import com.assuretraining.main.inventory.MediaInventory;
 import com.assuretraining.main.inventory.RentalInventory;
-import com.assuretraining.main.ui.command.CommandExecutor;
+import com.assuretraining.main.ui.command.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
 public class Menu {
     private final ScannerActions reader;
-    HashMap<String, CommandExecutor> context=new HashMap<String, CommandExecutor>();
     private CustomerInventory customers;
     private MediaInventory ownedMedia;
     private RentalInventory rentals;
+
+    private CreateCustomerCommand createCustomerCommand = new CreateCustomerCommand();
+    private CreateMovieCommand createMovieCommand = new CreateMovieCommand();
+    private CreateMusicAlbumCommand createMusicAlbumCommand = new CreateMusicAlbumCommand();
+    private CreateVideoGameCommand createVideoGameCommand = new CreateVideoGameCommand();
+    private CreateRentalCommand createRentalCommand = new CreateRentalCommand();
+
     public Menu(){
         this.reader  = new ScannerActions();
         this.customers = new CustomerInventory();
@@ -31,10 +35,11 @@ public class Menu {
 
     public void startMenu() throws Exception {
        Boolean isMenuOn = true;
-       String choice = "";
+       String choice;
        while (isMenuOn) {
            printOptions();
            choice = reader.getString();
+
            switch (choice) {
                case "0":
                    System.out.println(MenuStrings.FAREWELL);
@@ -74,6 +79,7 @@ public class Menu {
                    System.out.println(MenuStrings.INVALID_OPTION);
                    break;
            }
+
        }
     }
 
