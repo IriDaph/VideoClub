@@ -3,7 +3,7 @@ package com.assuretraining.main.ui.command;
 import com.assuretraining.main.club.media.MusicAlbum;
 import com.assuretraining.main.ui.Menu;
 
-public class CreateMusicAlbumCommand {
+public class CreateMusicAlbumCommand implements Command {
     public void runCommand(Menu menu) throws Exception {
         System.out.println("Enter music album's uid: ");
         String uid = menu.reader.getString();

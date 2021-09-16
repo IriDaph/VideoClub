@@ -3,7 +3,7 @@ package com.assuretraining.main.ui.command;
 import com.assuretraining.main.club.rental.Rental;
 import com.assuretraining.main.ui.Menu;
 
-public class ModifyDateCommand {
+public class ModifyDateCommand implements Command {
     public void runCommand(Menu menu) throws Exception {
         System.out.println("Enter rental's  id: ");
         String rentalId = menu.reader.getString();

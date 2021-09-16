@@ -5,7 +5,7 @@ import com.assuretraining.main.club.media.Media;
 import com.assuretraining.main.club.rental.Rental;
 import com.assuretraining.main.ui.Menu;
 
-public class CreateRentalCommand {
+public class CreateRentalCommand implements Command {
     public void runCommand(Menu menu){
         if( !menu.customers.isInventoryEmpty() && !menu.ownedMedia.isInventoryEmpty()) {
             System.out.println("Enter rental's id: ");

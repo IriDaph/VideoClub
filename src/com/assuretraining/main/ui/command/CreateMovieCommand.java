@@ -5,8 +5,8 @@ import com.assuretraining.main.ui.Menu;
 
 import java.util.List;
 
-public class CreateMovieCommand {
-    public void runCommand(Menu menu) throws Exception {
+public class CreateMovieCommand implements Command {
+    public void runCommand(Menu menu) throws Exception{
         System.out.println("Enter movie's uid: ");
         String uid = menu.reader.getString();
 

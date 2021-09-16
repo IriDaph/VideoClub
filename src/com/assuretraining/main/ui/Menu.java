@@ -16,19 +16,6 @@ public class Menu {
     public RentalInventory rentals;
     public Boolean isMenuOn;
 
-    private CreateCustomerCommand createCustomerCommand = new CreateCustomerCommand();
-    private CreateMovieCommand createMovieCommand = new CreateMovieCommand();
-    private CreateMusicAlbumCommand createMusicAlbumCommand = new CreateMusicAlbumCommand();
-    private CreateVideoGameCommand createVideoGameCommand = new CreateVideoGameCommand();
-    private CreateRentalCommand createRentalCommand = new CreateRentalCommand();
-    private SeeCustomersCommand seeCustomersCommand = new SeeCustomersCommand();
-    private SeeMediaCommand seeMediaCommand = new SeeMediaCommand();
-    private SeeRentalsCommand seeRentalsCommand = new SeeRentalsCommand();
-    private CalculatePenaltyCommand calculatePenaltyCommand = new CalculatePenaltyCommand();
-    private ModifyDateCommand modifyDateCommand = new ModifyDateCommand();
-    private InvalidChoiceCommand invalidChoiceCommand = new InvalidChoiceCommand();
-    private ExitCommand exitCommand = new ExitCommand();
-
     public Menu(){
         this.reader  = new ScannerActions();
         this.customers = new CustomerInventory();
@@ -45,47 +32,52 @@ public class Menu {
        while (isMenuOn) {
            printOptions();
            choice = reader.getString();
-
-           switch (choice) {
-               case "0":
-                   exitCommand.runCommand(this);
-                   break;
-               case "1":
-                   createCustomerCommand.runCommand(this);
-                   break;
-               case "2":
-                   createMovieCommand.runCommand(this);
-                   break;
-               case "3":
-                   createMusicAlbumCommand.runCommand(this);
-                   break;
-               case "4":
-                   createVideoGameCommand.runCommand(this);
-                   break;
-               case "5":
-                   createRentalCommand.runCommand(this);
-                   break;
-               case "6":
-                  seeCustomersCommand.runCommand(this);
-                   break;
-               case "7":
-                   seeMediaCommand.runCommand(this);
-                   break;
-               case "8" :
-                   seeRentalsCommand.runCommand(this);
-                   break;
-               case "9":
-                   calculatePenaltyCommand.runCommand(this);
-                   break;
-               case  "10":
-                   modifyDateCommand.runCommand(this);
-                   break;
-               default:
-                   invalidChoiceCommand.runCommand(this);
-                   break;
-           }
+           createCommandBuilder(choice).runCommand(this);
 
        }
+    }
+
+    private Command createCommandBuilder(String choice) {
+        Command command;
+        switch (choice) {
+            case "0":
+                command = new ExitCommand();
+                break;
+            case "1":
+                command = new CreateCustomerCommand();
+                break;
+            case "2":
+                command = new CreateMovieCommand();
+                break;
+            case "3":
+                command = new CreateMusicAlbumCommand();
+                break;
+            case "4":
+                command = new CreateVideoGameCommand();
+                break;
+            case "5":
+                command = new CreateRentalCommand();
+                break;
+            case "6":
+                command = new SeeCustomersCommand();
+                break;
+            case "7":
+                command = new SeeMediaCommand();
+                break;
+            case "8" :
+                command = new SeeRentalsCommand();
+                break;
+            case "9":
+                command = new CalculatePenaltyCommand();
+                break;
+            case  "10":
+                command = new ModifyDateCommand();
+                break;
+            default:
+                command = new InvalidChoiceCommand();
+                break;
+        }
+        return command;
     }
 
 
