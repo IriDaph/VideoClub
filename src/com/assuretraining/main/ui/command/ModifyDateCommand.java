@@ -8,10 +8,8 @@ public class ModifyDateCommand implements Command {
         System.out.println("Enter rental's  id: ");
         String rentalId = menu.reader.getString();
         Rental rental = menu.searchRentalById(rentalId);
-
         System.out.println("Enter new date (dd/mm/yyyy): ");
         String date = menu.reader.getDate();
-
         rental.setDateOfRental(date);
         rental.calculateDayOfReturning();
     }

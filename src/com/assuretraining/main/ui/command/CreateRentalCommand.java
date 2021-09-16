@@ -13,19 +13,16 @@ public class CreateRentalCommand implements Command {
             System.out.println("Enter rental's media uid: ");
             String mediaUid = menu.reader.getString();
             Media media = menu.searchMediaByUid(mediaUid);
-
             System.out.println("Enter rental's customers id: ");
             String customerId = menu.reader.getString();
             Customer customer = menu.searchCustomerById(customerId);
-
             System.out.println("Enter rental's number of days: ");
             Integer numberOfDays = menu.reader.getInteger();
-
+            menu.reader.getNextLine();
             System.out.println("Is the customer paying in advance y/n: ");
             boolean isPaid;
             String paying = menu.reader.getString();
             isPaid = paying.equals("y");
-
             Rental rental = new Rental(id, media, customer, numberOfDays, isPaid);
             customer.calculateRewardPoints(numberOfDays * media.getCostPerDay());
             menu.rentals.add(rental);
