@@ -1,4 +1,4 @@
-package com.assuretraining;
+package com.assuretraining.main.club.customer;
 
 public class Customer {
     private String id;
@@ -61,20 +61,16 @@ public class Customer {
         return rewardPoints;
     }
 
-    public void setRewardPoints(Integer rewardPoints) {
-        this.rewardPoints = rewardPoints;
-    }
-
-    public void calculateRewardPoints(double amountSpent){
+    public void calculateRewardPoints(double amountSpent) {
         this.rewardPoints = this.rewardPoints + (int) amountSpent;
     }
 
-    public  void printCustomer(){
-        System.out.println("Id: "+id);
-        System.out.println("Name: "+name);
-        System.out.println("Lastname: "+lastname);
-        System.out.println("Cellphone"+cellphone);
-        System.out.println("Rewards points: "+rewardPoints);
+    public  void printCustomer() {
+        System.out.println(CustomerStrings.ID + id);
+        System.out.println(CustomerStrings.NAME + name);
+        System.out.println(CustomerStrings.LASTNAME + lastname);
+        System.out.println(CustomerStrings.CELLPHONE + cellphone);
+        System.out.println(CustomerStrings.REWARD_POINTS + rewardPoints);
     }
 
 }

@@ -1,16 +1,15 @@
-package com.assuretraining;
+package com.assuretraining.main.club.media;
 
 import java.util.List;
 
-public class Videogame extends Media{
+public class Videogame extends Media {
     private double rating;
     private List<String> platforms;
     private String developer;
     private String typeOfGame;
 
-    public Videogame(
-                    String uid,
-                    String description,
+    public Videogame(String uid,
+                     String description,
                      double costPerDay,
                      String name,
                      String dateOfRelease,
