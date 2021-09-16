@@ -6,7 +6,7 @@ import com.assuretraining.main.ui.Menu;
 import java.util.List;
 
 public class CreateVideoGameCommand {
-    public void createVideogame(Menu menu) throws Exception {
+    public void runCommand(Menu menu) throws Exception {
         System.out.println("Enter videogame's uid: ");
         String uid = menu.reader.getString();
         System.out.println("Enter videogame's description: ");

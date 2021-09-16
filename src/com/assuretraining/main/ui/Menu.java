@@ -14,6 +14,7 @@ public class Menu {
     public CustomerInventory customers;
     public MediaInventory ownedMedia;
     public RentalInventory rentals;
+    public Boolean isMenuOn;
 
     private CreateCustomerCommand createCustomerCommand = new CreateCustomerCommand();
     private CreateMovieCommand createMovieCommand = new CreateMovieCommand();
@@ -26,19 +27,20 @@ public class Menu {
     private CalculatePenaltyCommand calculatePenaltyCommand = new CalculatePenaltyCommand();
     private ModifyDateCommand modifyDateCommand = new ModifyDateCommand();
     private InvalidChoiceCommand invalidChoiceCommand = new InvalidChoiceCommand();
+    private ExitCommand exitCommand = new ExitCommand();
 
     public Menu(){
         this.reader  = new ScannerActions();
         this.customers = new CustomerInventory();
         this.ownedMedia = new MediaInventory();
         this.rentals = new RentalInventory();
+        this.isMenuOn = true;
 
 
     }
 
 
     public void startMenu() throws Exception {
-       Boolean isMenuOn = true;
        String choice;
        while (isMenuOn) {
            printOptions();
@@ -46,41 +48,40 @@ public class Menu {
 
            switch (choice) {
                case "0":
-                   System.out.println(MenuStrings.FAREWELL);
-                   isMenuOn = false;
+                   exitCommand.runCommand(this);
                    break;
                case "1":
-                   createCustomerCommand.createCustomer(this);
+                   createCustomerCommand.runCommand(this);
                    break;
                case "2":
-                   createMovieCommand.createMovie(this);
+                   createMovieCommand.runCommand(this);
                    break;
                case "3":
-                   createMusicAlbumCommand.createMusicAlbum(this);
+                   createMusicAlbumCommand.runCommand(this);
                    break;
                case "4":
-                   createVideoGameCommand.createVideogame(this);
+                   createVideoGameCommand.runCommand(this);
                    break;
                case "5":
-                   createRentalCommand.createRental(this);
+                   createRentalCommand.runCommand(this);
                    break;
                case "6":
-                  seeCustomersCommand.seeAllCustomer(this);
+                  seeCustomersCommand.runCommand(this);
                    break;
                case "7":
-                   seeMediaCommand.seeAllMedia(this);
+                   seeMediaCommand.runCommand(this);
                    break;
                case "8" :
-                   seeRentalsCommand.seeAllRentals(this);
+                   seeRentalsCommand.runCommand(this);
                    break;
                case "9":
-                   calculatePenaltyCommand.calculatePenaltyFee(this);
+                   calculatePenaltyCommand.runCommand(this);
                    break;
                case  "10":
-                   modifyDateCommand.modifyReturnOfRental(this);
+                   modifyDateCommand.runCommand(this);
                    break;
                default:
-                   invalidChoiceCommand.invalidChoice(this);
+                   invalidChoiceCommand.runCommand(this);
                    break;
            }
 

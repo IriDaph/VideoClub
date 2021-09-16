@@ -3,9 +3,9 @@ package com.assuretraining.main.ui.command;
 import com.assuretraining.main.club.customer.Customer;
 import com.assuretraining.main.ui.Menu;
 
-public class CreateCustomerCommand {
+public class CreateCustomerCommand implements Command {
 
-    public void createCustomer(Menu menu){
+    public void runCommand(Menu menu){
         System.out.println("Enter customers id: ");
         String id = menu.reader.getString();
         System.out.println("Enter customer's name: ");
