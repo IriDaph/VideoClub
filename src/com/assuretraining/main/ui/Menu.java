@@ -8,6 +8,8 @@ import com.assuretraining.main.inventory.MediaInventory;
 import com.assuretraining.main.inventory.RentalInventory;
 import com.assuretraining.main.ui.command.*;
 
+import java.util.HashMap;
+
 
 public class Menu {
     public final ScannerActions reader;
@@ -22,10 +24,7 @@ public class Menu {
         this.ownedMedia = new MediaInventory();
         this.rentals = new RentalInventory();
         this.isMenuOn = true;
-
-
     }
-
 
     public void startMenu() throws Exception {
        String choice;
@@ -39,61 +38,37 @@ public class Menu {
 
     private Command createCommandBuilder(String choice) {
         Command command;
-        switch (choice) {
-            case "0":
-                command = new ExitCommand();
-                break;
-            case "1":
-                command = new CreateCustomerCommand();
-                break;
-            case "2":
-                command = new CreateMovieCommand();
-                break;
-            case "3":
-                command = new CreateMusicAlbumCommand();
-                break;
-            case "4":
-                command = new CreateVideoGameCommand();
-                break;
-            case "5":
-                command = new CreateRentalCommand();
-                break;
-            case "6":
-                command = new SeeCustomersCommand();
-                break;
-            case "7":
-                command = new SeeMediaCommand();
-                break;
-            case "8" :
-                command = new SeeRentalsCommand();
-                break;
-            case "9":
-                command = new CalculatePenaltyCommand();
-                break;
-            case  "10":
-                command = new ModifyDateCommand();
-                break;
-            default:
-                command = new InvalidChoiceCommand();
-                break;
-        }
+        HashMap<String,Command> commands = new HashMap<String,Command>();
+        // commands.put(MenuStrings.INVALID_OPTION,new InvalidChoiceCommand());
+        commands.put(MenuStrings.EXIT_MENU,new ExitCommand());
+        commands.put(MenuStrings.ADD_CUSTOMER,new CreateCustomerCommand());
+        commands.put(MenuStrings.ADD_MOVIE,new CreateMovieCommand());
+        commands.put(MenuStrings.ADD_MUSIC,new CreateMusicAlbumCommand());
+        commands.put(MenuStrings.ADD_VIDEO_GAME,new CreateVideoGameCommand());
+        commands.put(MenuStrings.ADD_RENTAL,new CreateRentalCommand());
+        commands.put(MenuStrings.SEE_CUSTOMERS, new SeeCustomersCommand());
+        commands.put(MenuStrings.SEE_MEDIA, new SeeMediaCommand());
+        commands.put(MenuStrings.SEE_RENTALS, new SeeRentalsCommand());
+        commands.put(MenuStrings.CALCULATE_PENALTY_FEE, new CalculatePenaltyCommand());
+        commands.put(MenuStrings.MODIFY_RETURN_DATE, new ModifyDateCommand());
+
+        command = commands.get(choice);
         return command;
     }
 
-
     private void printOptions() {
         System.out.println(MenuStrings.DECORATION);
-        System.out.println(MenuStrings.ADD_CUSTOMER);
-        System.out.println(MenuStrings.ADD_MOVIE);
-        System.out.println(MenuStrings.ADD_MUSIC_ALBUM);
-        System.out.println(MenuStrings.ADD_VIDEO_GAME);
-        System.out.println(MenuStrings.ADD_RENTAL);
-        System.out.println(MenuStrings.SEE_CUSTOMERS);
-        System.out.println(MenuStrings.SEE_MEDIA);
-        System.out.println(MenuStrings.SEE_RENTALS);
-        System.out.println(MenuStrings.CALCULATE_PENALTY_FEE);
-        System.out.println(MenuStrings.MODIFY_RETURN_DATE);
-        System.out.println(MenuStrings.EXIT_MENU);
+        System.out.println(MenuStrings.ADD_CUSTOMER_DESCRIPTION);
+        System.out.println(MenuStrings.ADD_MOVIE_DESCRIPTION);
+        System.out.println(MenuStrings.ADD_MUSIC_DESCRIPTION);
+        System.out.println(MenuStrings.ADD_VIDEO_GAME_DESCRIPTION);
+        System.out.println(MenuStrings.ADD_RENTAL_DESCRIPTION);
+        System.out.println(MenuStrings.SEE_CUSTOMERS_DESCRIPTION);
+        System.out.println(MenuStrings.SEE_MEDIA_DESCRIPTION);
+        System.out.println(MenuStrings.SEE_RENTALS_DESCRIPTION);
+        System.out.println(MenuStrings.CALCULATE_PENALTY_FEE_DESCRIPTION);
+        System.out.println(MenuStrings.MODIFY_RETURN_DATE_DESCRIPTION);
+        System.out.println(MenuStrings.EXIT_MENU_DESCRIPTION);
         System.out.println(MenuStrings.DECORATION);
         System.out.println(MenuStrings.ENTER_OPTION);
     }
