@@ -3,16 +3,14 @@ package com.assuretraining.main.ui.command;
 import com.assuretraining.main.club.rental.Rental;
 import com.assuretraining.main.ui.Menu;
 
-public class ModifyDateCommand {
-    public void modifyReturnOfRental(Menu menu) throws Exception {
+public class CalculatePenaltyCommand {
+    public void calculatePenaltyFee(Menu menu){
         System.out.println("Enter rental's  id: ");
         String rentalId = menu.reader.getString();
         Rental rental = menu.searchRentalById(rentalId);
 
-        System.out.println("Enter new date (dd/mm/yyyy): ");
-        String date = menu.reader.getDate();
+        rental.calculatePenalty();
+        System.out.println("Customer "+rental.getCustomer().getId()+" penalty fee is "+rental.getPenaltyFee());
 
-        rental.setDateOfRental(date);
-        rental.calculateDayOfReturning();
     }
 }
