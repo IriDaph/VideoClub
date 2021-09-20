@@ -62,6 +62,21 @@ public class ScannerActions {
         return this.scanner.nextLine();
     }
 
+    public String getDuration(){
+        Pattern pattern = Pattern.compile("^[0-9]?[0-9]?[0-9]:[0-5][0-9]$");
+        String duration = getString();
+        Matcher match = pattern.matcher(duration);
+        boolean itMatchesPattern = match.matches();
+        while (!itMatchesPattern){
+            System.out.println("Please enter a VALID duration in the format 1:50");
+            duration = this.scanner.nextLine();
+            match = pattern.matcher(duration);
+            itMatchesPattern = match.matches();
+        }
+
+        return duration;
+    }
+
     public List<String> getStringList(String typeOfList){
         List<String> stringList = new ArrayList<>();
         Boolean answer = true;

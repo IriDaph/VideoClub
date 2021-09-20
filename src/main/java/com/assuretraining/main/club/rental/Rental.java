@@ -120,4 +120,10 @@ public class Rental {
         System.out.println(RentalStrings.TOTAL + total);
         System.out.println(RentalStrings.PENALTY_FEE + penaltyFee);
     }
+    public  void printRentingCustomer(){
+        System.out.println(RentalStrings.CUSTOMERS_ID + customer.getId());
+        System.out.println(RentalStrings.CUSTOMERS_NAME + customer.getName());
+    }
+
+
 }

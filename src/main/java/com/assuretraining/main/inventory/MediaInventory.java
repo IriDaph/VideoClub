@@ -27,6 +27,11 @@ public class MediaInventory implements Inventory {
     }
 
     @Override
+    public List getInventory() {
+        return mediaInventoryList;
+    }
+
+    @Override
     public Object searchByIdentifier(String id) {
         Media askedMedia = null;
         for (Media  media: this.mediaInventoryList){

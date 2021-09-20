@@ -28,7 +28,7 @@ public class CreateMovieCommand implements Command {
         System.out.println("Enter movie's genre: ");
         String genre = menu.reader.getString();
         System.out.println("Enter movie's duration (ex: 2:30): ");
-        String duration = menu.reader.getString();
+        String duration = menu.reader.getDuration();
         System.out.println("Enter movie's country of Origin: ");
         String countryOfOrigin = menu.reader.getString();
         Movie movie = new Movie(description,cost,name,uid,date0fRelease,imdb,director,cast,duration,genre,countryOfOrigin);

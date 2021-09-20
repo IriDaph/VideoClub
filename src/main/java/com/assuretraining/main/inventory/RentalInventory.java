@@ -27,6 +27,11 @@ public class RentalInventory implements Inventory{
     }
 
     @Override
+    public List getInventory() {
+        return rentalInventory;
+    }
+
+    @Override
     public Object searchByIdentifier(String id) {
         Rental askedRental = null;
         for (Rental  rental: this.rentalInventory){
@@ -64,5 +69,15 @@ public class RentalInventory implements Inventory{
                 break;
             }
         }
+    }
+
+    public void searchCustomersWhoRentedMedia(String mediaUid){
+        List<String> customersInfo = new ArrayList<>();
+        for (Rental rental: rentalInventory){
+            if (rental.getRentedMedia().getUid().equals(mediaUid)){
+                rental.printRentingCustomer();
+            }
+        }
+
     }
 }

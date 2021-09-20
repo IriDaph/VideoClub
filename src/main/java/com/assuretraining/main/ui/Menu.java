@@ -16,7 +16,7 @@ public class Menu {
     public final ScannerActions reader;
     public Inventory customers;
     public Inventory ownedMedia;
-    public Inventory rentals;
+    public RentalInventory rentals;
     public Boolean isMenuOn;
 
     public Menu(){
@@ -52,7 +52,8 @@ public class Menu {
         commands.put(MenuStrings.SEE_RENTALS, new SeeRentalsCommand());
         commands.put(MenuStrings.CALCULATE_PENALTY_FEE, new CalculatePenaltyCommand());
         commands.put(MenuStrings.MODIFY_RETURN_DATE, new ModifyDateCommand());
-        commands.put("11",new SortCustomersCommand());
+        commands.put(MenuStrings.CUSTOMER_RENTED_MEDIA,new CustomerWhoRentedMedia());
+
         return commands.get(choice);
     }
 
@@ -68,6 +69,7 @@ public class Menu {
         System.out.println(MenuStrings.SEE_RENTALS_DESCRIPTION);
         System.out.println(MenuStrings.CALCULATE_PENALTY_FEE_DESCRIPTION);
         System.out.println(MenuStrings.MODIFY_RETURN_DATE_DESCRIPTION);
+        System.out.println(MenuStrings.CUSTOMERS_RENTED_MEDIA_DESCRIPTION);
         System.out.println(MenuStrings.EXIT_MENU_DESCRIPTION);
         System.out.println(MenuStrings.DECORATION);
         System.out.println(MenuStrings.ENTER_OPTION);

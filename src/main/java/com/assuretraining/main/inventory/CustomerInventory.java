@@ -1,11 +1,8 @@
 package com.assuretraining.main.inventory;
 
 import com.assuretraining.main.club.customer.Customer;
-import com.assuretraining.main.club.media.Media;
-import com.assuretraining.main.ui.command.Command;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,6 +23,11 @@ public class CustomerInventory implements Inventory {
         for(Customer customer:customerInventory){
             customer.printCustomer();
         }
+    }
+
+    @Override
+    public List getInventory() {
+        return customerInventory;
     }
 
     @Override
