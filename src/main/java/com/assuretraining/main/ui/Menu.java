@@ -72,28 +72,17 @@ public class Menu {
         System.out.println(MenuStrings.ENTER_OPTION);
     }
 
-    public Customer searchCustomerById(String customerId) {
+    public Customer searchCustomerInventory(String customerId) {
         Customer askedCustomer = (Customer) customers.searchByIdentifier(customerId);
-
         return askedCustomer;
     }
-    public Media searchMediaByUid(String mediaUid) {
+    public Media searchMediaInventory(String mediaUid) {
         Media askedMedia = (Media) ownedMedia.searchByIdentifier(mediaUid);
-        while (askedMedia == null) {
-            System.out.println("A media with that Uid doesn't exist, enter another Uid ");
-            mediaUid = reader.getString();
-            askedMedia = (Media) ownedMedia.searchByIdentifier(mediaUid);
-        }
         return askedMedia;
     }
 
-    public Rental searchRentalById(String rentalId){
+    public Rental searchRentalInventory(String rentalId){
         Rental askedRental = (Rental) rentals.searchByIdentifier(rentalId);
-        while (askedRental == null){
-            System.out.println("A rental with that id doesn't exist, enter another id: ");
-            rentalId = reader.getString();
-            askedRental = (Rental) rentals.searchByIdentifier(rentalId);
-        }
         return askedRental;
     }
 }

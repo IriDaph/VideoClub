@@ -12,10 +12,20 @@ public class CreateRentalCommand implements Command {
             String id = menu.reader.getString();
             System.out.println("Enter rental's media uid: ");
             String mediaUid = menu.reader.getString();
-            Media media = menu.searchMediaByUid(mediaUid);
+            Media media = menu.searchMediaInventory(mediaUid);
+            while (media == null) {
+                System.out.println("A media with that Uid doesn't exist, enter another Uid ");
+                mediaUid = menu.reader.getString();
+                media = menu.searchMediaInventory(mediaUid);
+            }
             System.out.println("Enter rental's customers id: ");
             String customerId = menu.reader.getString();
-            Customer customer = menu.searchCustomerById(customerId);
+            Customer customer = menu.searchCustomerInventory(customerId);
+            while (customer == null) {
+                System.out.println("A customer with that id doesn't exist, enter another id ");
+                customerId =menu.reader.getString();
+                customer = menu.searchCustomerInventory(customerId);
+            }
             System.out.println("Enter rental's number of days: ");
             Integer numberOfDays = menu.reader.getInteger();
             menu.reader.getNextLine();

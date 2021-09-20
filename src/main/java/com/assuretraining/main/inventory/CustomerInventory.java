@@ -1,6 +1,7 @@
 package com.assuretraining.main.inventory;
 
 import com.assuretraining.main.club.customer.Customer;
+import com.assuretraining.main.club.media.Media;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,6 @@ public class CustomerInventory implements Inventory {
                 askedCustomer = customer;
             }
         }
-
         return askedCustomer;
     }
 
