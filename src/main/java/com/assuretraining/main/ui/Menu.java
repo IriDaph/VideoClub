@@ -52,6 +52,7 @@ public class Menu {
         commands.put(MenuStrings.SEE_RENTALS, new SeeRentalsCommand());
         commands.put(MenuStrings.CALCULATE_PENALTY_FEE, new CalculatePenaltyCommand());
         commands.put(MenuStrings.MODIFY_RETURN_DATE, new ModifyDateCommand());
+        commands.put("11",new SortCustomersCommand());
         return commands.get(choice);
     }
 
