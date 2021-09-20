@@ -1,5 +1,7 @@
 package com.assuretraining.main.ui;
 
+import com.assuretraining.main.club.media.Media;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -90,5 +92,28 @@ public class ScannerActions {
             }
         }
         return stringList;
+    }
+
+    public List<Media> getMedia(Menu menu) {
+        List<Media> rentedMedia = new ArrayList<>();
+        String userAnswer;
+        Boolean answer = true;
+        while (answer){
+            String mediaUid = getString();
+            Media media = menu.searchMediaInventory(mediaUid);
+            while (media == null) {
+                System.out.println("A media with that Uid doesn't exist, enter another Uid ");
+                mediaUid = getString();
+                media = menu.searchMediaInventory(mediaUid);
+            }
+            rentedMedia.add(media);
+            System.out.println("Do you want to add another media y/n:");
+            userAnswer = getString();
+            if (userAnswer.equals("n")){
+                answer = false;
+            }
+
+        }
+        return  rentedMedia;
     }
 }

@@ -6,13 +6,14 @@ import com.assuretraining.main.club.media.Media;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Rental {
     private String id;
     private Date dateOfRental;
     private Date dateOfReturning;
-    private Media rentedMedia;
+    private List<Media> rentedMedia;
     private Customer customer;
     private Boolean isPaid;
     private double total;
@@ -20,7 +21,7 @@ public class Rental {
     private double penaltyFee;
 
     public Rental(String id,
-                  Media rentedMedia,
+                  List rentedMedia,
                   Customer customer,
                   Integer quantityOfDays,
                   Boolean isPaid) {
@@ -30,10 +31,19 @@ public class Rental {
         this.isPaid = isPaid;
         this.quantityOfDays = quantityOfDays;
         this.penaltyFee = 0;
-        this.total = quantityOfDays * rentedMedia.getCostPerDay();
+        this.total = calculateTotal();
         this.dateOfRental = new Date();
         calculateDayOfReturning();
     }
+
+    private double calculateTotal() {
+        double totalInvoice=0;
+        for (Media media:rentedMedia){
+            totalInvoice = totalInvoice + media.getCostPerDay();
+        }
+        return totalInvoice * quantityOfDays;
+    }
+
     public void calculateDayOfReturning() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(this.dateOfRental);
@@ -67,11 +77,11 @@ public class Rental {
         this.dateOfReturning = date;
     }
 
-    public Media getRentedMedia() {
+    public List<Media> getRentedMedia() {
         return rentedMedia;
     }
 
-    public void setRentedMedia(Media rentedMedia) {
+    public void setRentedMedia(List rentedMedia) {
         this.rentedMedia = rentedMedia;
     }
 
@@ -93,6 +103,9 @@ public class Rental {
 
     public double getPenaltyFee() {
         return penaltyFee;
+    }
+    public double getTotal(){
+        return total;
     }
 
     public void calculatePenalty() {

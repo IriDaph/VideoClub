@@ -1,6 +1,7 @@
 package com.assuretraining.main.inventory;
 
 import com.assuretraining.main.club.customer.Customer;
+import com.assuretraining.main.club.media.Media;
 import com.assuretraining.main.club.rental.Rental;
 
 import java.util.ArrayList;
@@ -74,8 +75,10 @@ public class RentalInventory implements Inventory{
     public void searchCustomersWhoRentedMedia(String mediaUid){
         List<String> customersInfo = new ArrayList<>();
         for (Rental rental: rentalInventory){
-            if (rental.getRentedMedia().getUid().equals(mediaUid)){
-                rental.printRentingCustomer();
+            for (Media media: rental.getRentedMedia()){
+                if (media.getUid().equals(mediaUid)){
+                    rental.printRentingCustomer();
+                }
             }
         }
 

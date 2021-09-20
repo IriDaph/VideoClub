@@ -5,19 +5,17 @@ import com.assuretraining.main.club.media.Media;
 import com.assuretraining.main.club.rental.Rental;
 import com.assuretraining.main.ui.Menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreateRentalCommand implements Command {
     public void runCommand(Menu menu){
+        List<Media> rentedMedia = new ArrayList<>();
         if( !menu.customers.isInventoryEmpty() && !menu.ownedMedia.isInventoryEmpty()) {
             System.out.println("Enter rental's id: ");
             String id = menu.reader.getString();
             System.out.println("Enter rental's media uid: ");
-            String mediaUid = menu.reader.getString();
-            Media media = menu.searchMediaInventory(mediaUid);
-            while (media == null) {
-                System.out.println("A media with that Uid doesn't exist, enter another Uid ");
-                mediaUid = menu.reader.getString();
-                media = menu.searchMediaInventory(mediaUid);
-            }
+            rentedMedia = menu.reader.getMedia(menu);
             System.out.println("Enter rental's customers id: ");
             String customerId = menu.reader.getString();
             Customer customer = menu.searchCustomerInventory(customerId);
@@ -33,12 +31,13 @@ public class CreateRentalCommand implements Command {
             boolean isPaid;
             String paying = menu.reader.getString();
             isPaid = paying.equals("y");
-            Rental rental = new Rental(id, media, customer, numberOfDays, isPaid);
-            customer.calculateRewardPoints(numberOfDays * media.getCostPerDay());
+            Rental rental = new Rental(id, rentedMedia, customer, numberOfDays, isPaid);
+            customer.calculateRewardPoints(rental.getTotal());
             menu.rentals.add(rental);
         }
         else {
             System.out.println("There aren't any media or customers added yet, you can't add a Rental without those.");
         }
     }
+
 }
