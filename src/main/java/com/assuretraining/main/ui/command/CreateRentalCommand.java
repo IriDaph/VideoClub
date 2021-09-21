@@ -32,7 +32,8 @@ public class CreateRentalCommand implements Command {
             String paying = menu.reader.getString();
             isPaid = paying.equals("y");
             Rental rental = new Rental(id, rentedMedia, customer, numberOfDays, isPaid);
-            customer.calculateRewardPoints(rental.getTotal());
+            Integer customersPoints = customer.calculateRewardPoints(rental.getTotal());
+            customer.setRewardPoints(customersPoints);
             menu.rentals.add(rental);
         }
         else {

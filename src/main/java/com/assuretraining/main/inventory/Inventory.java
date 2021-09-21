@@ -10,5 +10,5 @@ public interface Inventory<T> {
     public List<T> getInventory();
     public Object searchByIdentifier(String id);
     public boolean isInventoryEmpty();
-    public void sortInventoryById();
+    public void sortInventory();
 }

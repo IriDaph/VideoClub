@@ -47,18 +47,20 @@ public class CustomerInventory implements Inventory {
     }
 
     @Override
-    public void sortInventoryById() {
+    public void sortInventory() {
         int i,j,comparison;
         boolean swapped;
         Customer customer1;
         Customer customer2;
+
         int inventorySize = customerInventory.size();
         for (i = 0; i < inventorySize -1; i++){
             swapped = false;
             for (j =0; j< inventorySize-i-1; j++){
                 customer1 = customerInventory.get(j);
                 customer2 = customerInventory.get(j+1);
-                comparison = customer1.getId().compareTo(customer2.getId());
+                comparison = customer1.getName().trim().compareTo(customer2.getName().trim());
+                System.out.println(comparison);
                 if (comparison > 0 ){
                     Collections.swap(customerInventory,j,j+1);
                     swapped = true;

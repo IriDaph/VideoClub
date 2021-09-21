@@ -53,6 +53,7 @@ public class Menu {
         commands.put(MenuStrings.CALCULATE_PENALTY_FEE, new CalculatePenaltyCommand());
         commands.put(MenuStrings.MODIFY_RETURN_DATE, new ModifyDateCommand());
         commands.put(MenuStrings.CUSTOMER_RENTED_MEDIA,new CustomerWhoRentedMedia());
+        commands.put("12",new SortCustomersCommand());
 
         return commands.get(choice);
     }

@@ -49,7 +49,7 @@ public class RentalInventory implements Inventory{
     }
 
     @Override
-    public void sortInventoryById() {
+    public void sortInventory() {
         int i,j,comparison;
         boolean swapped;
         Rental rental1;
@@ -60,7 +60,7 @@ public class RentalInventory implements Inventory{
             for (j =0; j< inventorySize-i-1; j++){
                 rental1 = rentalInventory.get(j);
                 rental2 = rentalInventory.get(j+1);
-                comparison = rental1.getId().compareTo(rental2.getId());
+                comparison = rental1.getId().trim().compareTo(rental2.getId().trim());
                 if (comparison > 0 ){
                     Collections.swap(rentalInventory,j,j+1);
                     swapped = true;

@@ -36,7 +36,7 @@ public class Rental {
         calculateDayOfReturning();
     }
 
-    private double calculateTotal() {
+    public double calculateTotal() {
         double totalInvoice=0;
         for (Media media:rentedMedia){
             totalInvoice = totalInvoice + media.getCostPerDay();
@@ -66,6 +66,9 @@ public class Rental {
     public void setDateOfRental(String dateOfRental) throws Exception {
         Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfRental);
         this.dateOfRental = date;
+    }
+    public void setQuantityOfDays(Integer days){
+        this.quantityOfDays = days;
     }
 
     public Date getDateOfReturning() {
@@ -104,6 +107,9 @@ public class Rental {
     public double getPenaltyFee() {
         return penaltyFee;
     }
+    public void setTotal(double total) {
+        this.total = total;
+    }
     public double getTotal(){
         return total;
     }
@@ -137,6 +143,7 @@ public class Rental {
         System.out.println(RentalStrings.CUSTOMERS_ID + customer.getId());
         System.out.println(RentalStrings.CUSTOMERS_NAME + customer.getName());
     }
+
 
 
 }
