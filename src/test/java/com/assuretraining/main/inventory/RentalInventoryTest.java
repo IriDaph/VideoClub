@@ -4,6 +4,7 @@ import com.assuretraining.main.club.customer.Customer;
 import com.assuretraining.main.club.media.Media;
 import com.assuretraining.main.club.media.Movie;
 import com.assuretraining.main.club.media.MusicAlbum;
+import com.assuretraining.main.club.media.Videogame;
 import com.assuretraining.main.club.rental.Rental;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class RentalInventoryTest {
-    Inventory rentalInventory;
+    RentalInventory rentalInventory;
     List<Rental> inventory;
     Customer customer1 = mock(Customer.class);
     Customer customer2 = mock(Customer.class);
@@ -128,6 +129,23 @@ class RentalInventoryTest {
     }
 
     @Test
-    void searchCustomersWhoRentedMedia() {
+    void searchCustomersWhoRentedMedia_ShouldShowListOfCustomersWhoRented() throws Exception {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        List<Media> rentedMedia = new ArrayList<>();
+        MusicAlbum musicAlbum = new MusicAlbum("120",3.50,"Hit 100","Popular hits","12/02/2020","Various",100,"Pop");
+        Customer c1 = new Customer("100","Ana","Martinez","Av. Peru 1212","77872312");
+        Customer c2 = new Customer("120","Juan","Perez","Calle Colombia 1212","77823231");
+        rentedMedia.add(musicAlbum);
+        Rental rental1 = new Rental("1X",rentedMedia,c1,10,true);
+        Rental rental2 = new Rental("1C",rentedMedia,c2,5,false);
+        rentalInventory.add(rental1);
+        rentalInventory.add(rental2);
+        rentalInventory.searchCustomersWhoRentedMedia("120");
+        String expectedOutput = "Customer's Id: 100\r\n" +
+                "Customer's name: Ana\r\n" +
+                "Customer's Id: 120\r\n" +
+                "Customer's name: Juan\r\n";
+        Assertions.assertEquals(expectedOutput,outContent.toString());
     }
 }

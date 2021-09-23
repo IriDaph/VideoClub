@@ -62,8 +62,9 @@ class RentalTest {
     void calculatePenalty_ShouldIncreasePenalty_ReturnsTrue() throws Exception {
         rental.setDateOfReturning("20/09/2021");
         rental.setTotal(100.00);
+        rental.setQuantityOfDays(2);
         rental.calculatePenalty();
-        Assertions.assertEquals(75, rental.getPenaltyFee());
+        Assertions.assertEquals(150, rental.getPenaltyFee());
 
     }
     @Test

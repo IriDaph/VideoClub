@@ -2,6 +2,7 @@ package com.assuretraining.main.ui;
 
 import com.assuretraining.main.club.media.Media;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,8 +12,8 @@ import java.util.regex.Pattern;
 public class ScannerActions {
     private Scanner scanner;
 
-    public ScannerActions() {
-        this.scanner = new Scanner(System.in);
+    public ScannerActions(InputStream inputStream) {
+        this.scanner = new Scanner(inputStream);
     }
 
     public String getString() {
@@ -54,9 +55,10 @@ public class ScannerActions {
         boolean itMatchesPattern = match.matches();
         while (!itMatchesPattern){
             System.out.println("Please enter a VALID date in the format dd/mm/yyyy:");
-            date = this.scanner.nextLine();
+            date = getString();
             match = p.matcher(date);
             itMatchesPattern = match.matches();
+
         }
         return date;
     }
@@ -78,7 +80,6 @@ public class ScannerActions {
 
         return duration;
     }
-
     public List<String> getStringList(String typeOfList){
         List<String> stringList = new ArrayList<>();
         Boolean answer = true;

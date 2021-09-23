@@ -73,7 +73,6 @@ public class RentalInventory implements Inventory{
     }
 
     public void searchCustomersWhoRentedMedia(String mediaUid){
-        List<String> customersInfo = new ArrayList<>();
         for (Rental rental: rentalInventory){
             for (Media media: rental.getRentedMedia()){
                 if (media.getUid().equals(mediaUid)){

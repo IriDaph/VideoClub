@@ -9,6 +9,7 @@ import com.assuretraining.main.inventory.MediaInventory;
 import com.assuretraining.main.inventory.RentalInventory;
 import com.assuretraining.main.ui.command.*;
 
+import java.io.InputStream;
 import java.util.HashMap;
 
 
@@ -19,8 +20,8 @@ public class Menu {
     public RentalInventory rentals;
     public Boolean isMenuOn;
 
-    public Menu(){
-        this.reader  = new ScannerActions();
+    public Menu(InputStream inputStream){
+        this.reader  = new ScannerActions(inputStream);
         this.customers = new CustomerInventory();
         this.ownedMedia = new MediaInventory();
         this.rentals = new RentalInventory();
@@ -51,9 +52,8 @@ public class Menu {
         commands.put(MenuStrings.SEE_MEDIA, new SeeMediaCommand());
         commands.put(MenuStrings.SEE_RENTALS, new SeeRentalsCommand());
         commands.put(MenuStrings.CALCULATE_PENALTY_FEE, new CalculatePenaltyCommand());
-        commands.put(MenuStrings.MODIFY_RETURN_DATE, new ModifyDateCommand());
+        commands.put(MenuStrings.SORT_COSTUMERS,new SortCustomersCommand());
         commands.put(MenuStrings.CUSTOMER_RENTED_MEDIA,new CustomerWhoRentedMedia());
-        commands.put("12",new SortCustomersCommand());
 
         return commands.get(choice);
     }
@@ -69,7 +69,7 @@ public class Menu {
         System.out.println(MenuStrings.SEE_MEDIA_DESCRIPTION);
         System.out.println(MenuStrings.SEE_RENTALS_DESCRIPTION);
         System.out.println(MenuStrings.CALCULATE_PENALTY_FEE_DESCRIPTION);
-        System.out.println(MenuStrings.MODIFY_RETURN_DATE_DESCRIPTION);
+        System.out.println(MenuStrings.SORT_CUSTOMERS_DESCRIPTION);
         System.out.println(MenuStrings.CUSTOMERS_RENTED_MEDIA_DESCRIPTION);
         System.out.println(MenuStrings.EXIT_MENU_DESCRIPTION);
         System.out.println(MenuStrings.DECORATION);

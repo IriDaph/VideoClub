@@ -60,7 +60,6 @@ public class CustomerInventory implements Inventory {
                 customer1 = customerInventory.get(j);
                 customer2 = customerInventory.get(j+1);
                 comparison = customer1.getName().trim().compareTo(customer2.getName().trim());
-                System.out.println(comparison);
                 if (comparison > 0 ){
                     Collections.swap(customerInventory,j,j+1);
                     swapped = true;

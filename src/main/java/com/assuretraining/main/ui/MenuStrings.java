@@ -12,7 +12,7 @@ public class MenuStrings {
     public static final String SEE_MEDIA = "7";
     public static final String SEE_RENTALS = "8";
     public static final String CALCULATE_PENALTY_FEE = "9";
-    public static final String MODIFY_RETURN_DATE = "10";
+    public static final String SORT_COSTUMERS = "10";
     public static final String CUSTOMER_RENTED_MEDIA = "11";
 
     public static final String DECORATION = "******************************************************";
@@ -25,7 +25,7 @@ public class MenuStrings {
     public static final String SEE_MEDIA_DESCRIPTION = "7. See all media";
     public static final String SEE_RENTALS_DESCRIPTION = "8. See all rentals";
     public static final String CALCULATE_PENALTY_FEE_DESCRIPTION = "9. Calculate Penalty Fee";
-    public static final String MODIFY_RETURN_DATE_DESCRIPTION = "(10. Modify return date of rental:)";
+    public static final String SORT_CUSTOMERS_DESCRIPTION = "(10. Sort Customers By Name:)";
     public static final String CUSTOMERS_RENTED_MEDIA_DESCRIPTION ="11.See all customers that rented a media";
     public static final String EXIT_MENU_DESCRIPTION = "0. Exit";
     public static final String ENTER_OPTION = "Enter an option";
